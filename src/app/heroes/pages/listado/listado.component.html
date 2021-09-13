@@ -1,0 +1,26 @@
+<h1>Listado de Héroes</h1>
+
+<mat-divider></mat-divider> <!-- Inclou un hr -->
+<br>
+
+<!-- EXPLICACIÇO DEL CODI -->
+<!-- fxlayoutGap -> Separació en forma horitzontal de cada targeta (com el padding) -->
+<!-- fxLayout.xs -> Quan la pantalla sigui molt petita, les targetes es posaran una sota l'altra (column) -->
+<!-- fxLayoutAlign -> Centra el contingut de les targetes -->
+<!-- fxFlex.jg, sm, etc -> En pantalles d'aquestes midex, assigna el % (15 -> 15%, 20 -> 20%) de cada div -->
+<div fxLayout="row wrap" 
+    fxLayout.xs="column"
+    fxLayoutAlign="center" 
+    fxLayoutGap="20px"> <!-- https://github.com/angular/flex-layout -->
+
+    <div fxFlex="20" 
+        fxFlex.lg="15" 
+        fxFlex.sm="30"
+        *ngFor="let heroe of heroes"> <!-- amb el fxFlex indica que cada una, ocupi el 20% -->
+
+        <app-heroe-tarjeta [heroe]="heroe"></app-heroe-tarjeta> <!-- [el nom que li volem donar]="la variable que li passem" -->
+
+    </div>
+
+</div>
+

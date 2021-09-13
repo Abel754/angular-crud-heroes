@@ -1,0 +1,51 @@
+<h1>HeroesApp</h1>
+<hr>
+
+<router-outlet></router-outlet>
+
+<!-- https://material.angular.io/components/sidenav/examples -->
+<mat-sidenav-container fullscreen>
+    <mat-sidenav #sidenav mode="push"> <!-- Li assignem una variable que serà utilitzada en el botó (click) -->
+        <mat-toolbar color="primary">
+            <span>Menú</span>
+            <span class="spacer"></span>
+            <button mat-icon-button (click)="sidenav.toggle()"> <!-- https://material.angular.io/components/button/api -->
+                <mat-icon mat-list-icon>menu</mat-icon> <!-- https://material.angular.io/components/icon/api -->
+            </button>
+        </mat-toolbar>  
+        
+        <mat-nav-list>
+            <a routerLink="./listado" mat-list-item (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>label</mat-icon>
+                <span>Listado de Héroes</span>
+            </a>
+
+            <a routerLink="./agregar" mat-list-item (click)="sidenav.toggle()">
+                <mat-icon>add</mat-icon>
+                <span>Añadir Héroe</span>
+            </a>
+
+            <a routerLink="./buscar" mat-list-item (click)="sidenav.toggle()">
+                <mat-icon>search</mat-icon>
+                <span>Buscar Héroe</span>
+            </a>
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-toolbar>
+        <button mat-icon-button (click)="sidenav.toggle()"> <!-- https://material.angular.io/components/button/api -->
+            <mat-icon>menu</mat-icon> <!-- https://material.angular.io/components/icon/api -->
+        </button>
+
+        <span class="spacer"></span>
+
+        <button mat-button>
+            Logout
+        </button>
+    </mat-toolbar> <!-- https://material.angular.io/components/toolbar/api -->
+
+    <div class="container">
+        <router-outlet></router-outlet> <!-- Hem d'incloure les routes per fer el RouterLink -->
+    </div>
+
+</mat-sidenav-container> <!-- Puc utilitzar els mètodes d'Angular Material perquè està importat en el heroes.module.ts -->

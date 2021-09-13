@@ -1,0 +1,58 @@
+
+<div fxLayout="column">
+    <div>
+        <h1>Buscador de Héroes</h1>
+        <mat-divider></mat-divider>
+    </div>
+
+    <div fxLayout="column">
+        <h3>Buscador</h3>
+
+        <!-- https://material.angular.io/components/autocomplete/examples  (Mòdul importat a l'Angular Material) -->
+
+        <!-- ngModel serà el FormsModule importat a HeroesModule i el que fa és assignar un nom a un input i vincular-lo a una variable del component.ts -->
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Number</mat-label>
+            <input type="text"
+                   placeholder="Pick one"
+                   aria-label="Number"
+                   matInput
+                   [(ngModel)]="termino"
+                   [matAutocomplete]="auto"
+                   (input)="buscando()">
+            <mat-autocomplete 
+                autoActiveFirstOption 
+                #auto="matAutocomplete"
+                (optionSelected)="opcionSeleccionada( $event )">
+              <mat-option *ngFor="let heroe of heroes" [value]="heroe">
+                {{heroe.superhero}}
+              </mat-option>
+
+              <mat-option *ngIf="heroes.length === 0 && termino.trim().length > 0" value="">
+                No se encontró nada con el término {{termino}}
+              </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+
+    <div>
+        <pre>{{ heroeSeleccionado | json }}</pre>
+    </div>
+
+    <div fxLayout="row wrap" 
+        fxLayout.xs="column"
+        fxLayoutAlign="left" 
+        fxLayoutGap="20px"> <!-- https://github.com/angular/flex-layout -->
+
+        <div fxFlex="20" 
+            fxFlex.lg="15" 
+            fxFlex.sm="30"
+            > <!-- amb el fxFlex indica que cada una, ocupi el 20% -->
+            <div *ngIf="heroeSeleccionado">
+            <app-heroe-tarjeta [heroe]="heroeSeleccionado"></app-heroe-tarjeta> <!-- [el nom que li volem donar]="la variable que li passem" -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
